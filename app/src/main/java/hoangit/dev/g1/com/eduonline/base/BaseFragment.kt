@@ -1,12 +1,15 @@
 package hoangit.dev.g1.com.eduonline.base
 
+import android.content.Context
 import android.os.Bundle
+import android.os.Message
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import hoangit.dev.g1.com.eduonline.extension.addFragment
 import hoangit.dev.g1.com.eduonline.extension.replaceFragment
+import hoangit.dev.g1.com.eduonline.extension.showToast
 
 open abstract class BaseFragment : Fragment() {
 
@@ -33,6 +36,12 @@ open abstract class BaseFragment : Fragment() {
     fun replaceFragment(rootId: Int, fragment: Fragment, isAddToBackstack: Boolean) {
         if (activity is BaseActivity) {
             (activity as BaseActivity).replaceFragment(rootId, fragment, isAddToBackstack)
+        }
+    }
+
+    fun showToast(context: Context, message: String) {
+        if (activity is BaseActivity) {
+            (activity as BaseActivity).showToast(context, message)
         }
     }
 
