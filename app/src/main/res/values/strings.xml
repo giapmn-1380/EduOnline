@@ -11,4 +11,7 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="skip_tutorial">Tiếp theo</string>
+    <string name="facebook_app_id">715988828787083</string>
+    <string name="fb_login_protocol_scheme">fb715988828787083</string>
+
 </resources>
