@@ -1,20 +1,20 @@
 package hoangit.dev.g1.com.eduonline.app.laucher
 
 import android.content.Intent
-import android.os.Bundle
 import android.os.Handler
-import android.support.v7.app.AppCompatActivity
 import hoangit.dev.g1.com.eduonline.R
 import hoangit.dev.g1.com.eduonline.app.home.HomeActivity
 import hoangit.dev.g1.com.eduonline.app.tutorial.TutorialFragment
+import hoangit.dev.g1.com.eduonline.base.BaseActivity
 import hoangit.dev.g1.com.eduonline.extension.addFragment
 import hoangit.dev.g1.com.eduonline.utils.ConfigApp
 
-class LaucherActivity : AppCompatActivity() {
+class LaucherActivity : BaseActivity() {
+    override fun getLayoutID(): Int {
+        return R.layout.activity_laucher
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_laucher)
+    override fun onCreateActivity() {
         Handler().postDelayed({
             val isFirstOpenApp = ConfigApp.getInstances().isFirstOpenApp()
             if (isFirstOpenApp) {

@@ -1,6 +1,7 @@
 package hoangit.dev.g1.com.eduonline.base
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.Message
 import android.support.v4.app.Fragment
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 import hoangit.dev.g1.com.eduonline.extension.addFragment
 import hoangit.dev.g1.com.eduonline.extension.replaceFragment
 import hoangit.dev.g1.com.eduonline.extension.showToast
+import hoangit.dev.g1.com.eduonline.extension.startActivityWithTransition
 
 open abstract class BaseFragment : Fragment() {
 
@@ -42,6 +44,24 @@ open abstract class BaseFragment : Fragment() {
     fun showToast(context: Context, message: String) {
         if (activity is BaseActivity) {
             (activity as BaseActivity).showToast(context, message)
+        }
+    }
+
+    fun startTransition() {
+        if (activity is BaseActivity) {
+            (activity as BaseActivity).startTransition()
+        }
+    }
+
+    fun closeTransition() {
+        if (activity is BaseActivity) {
+            (activity as BaseActivity).closeTransition()
+        }
+    }
+
+    fun startActivityWithTransition(intent: Intent) {
+        if (activity is BaseActivity) {
+            (activity as BaseActivity).startActivityWithTransition(intent)
         }
     }
 

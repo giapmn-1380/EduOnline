@@ -8,10 +8,8 @@ import android.widget.ImageView
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import hoangit.dev.g1.com.eduonline.R
-import hoangit.dev.g1.com.eduonline.app.home.HomeActivity
+import hoangit.dev.g1.com.eduonline.app.login.LoginActivity
 import hoangit.dev.g1.com.eduonline.base.BaseFragment
-import hoangit.dev.g1.com.eduonline.utils.ConfigApp
-import java.lang.Exception
 
 class TutorialPageFragment : BaseFragment(), View.OnClickListener {
 
@@ -63,9 +61,10 @@ class TutorialPageFragment : BaseFragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v!!.id) {
             R.id.btn_skip_tutorial -> {
-                var intent = Intent(context, HomeActivity::class.java)
-                startActivity(intent)
-                ConfigApp.getInstances().setFirstOpenApp(false)
+                var intent = Intent(context, LoginActivity::class.java)
+                startActivityWithTransition(intent)
+//                ConfigApp.getInstances().setFirstOpenApp(false)
+                activity!!.finish()
             }
         }
     }

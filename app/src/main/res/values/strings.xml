@@ -13,5 +13,23 @@
     <string name="skip_tutorial">Tiếp theo</string>
     <string name="facebook_app_id">715988828787083</string>
     <string name="fb_login_protocol_scheme">fb715988828787083</string>
+    <string name="login_by_fb">Facebook</string>
+    <string name="login_by_gg">Google</string>
+    <string name="email">Email</string>
+    <string name="password">Mật khẩu</string>
+    <string name="re_enter_password">Xác nhận mật khẩu</string>
+    <string name="forget_pass_login">Quên mật khẩu đăng nhập?</string>
+    <string name="forget_pass">Quên mật khẩu</string>
+    <string name="login_after">Đăng nhập sau</string>
+    <string name="have_not_account">Chưa có tài khoản?</string>
+    <string name="have_account">Đã có tài khoản?</string>
+
+    <string name="register">Đăng ký</string>
+    <string name="login">Đăng nhập</string>
+    <string name="full_name">Họ tên</string>
+    <string name="error_input_email">Chưa nhập email</string>
+    <string name="error_input_pass">Chưa nhập mật khẩu</string>
+    <string name="loadding">Chờ tý...</string>
+    <string name="password_invalid">Mật khẩu chưa khớp</string>
 
 </resources>
