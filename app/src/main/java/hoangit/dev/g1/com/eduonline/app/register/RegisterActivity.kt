@@ -134,6 +134,7 @@ class RegisterActivity : BaseActivity(), View.OnClickListener, RegisterView {
     override fun onRegisterSuccess() {
         dismisProgressLoading()
         goToHome()
+        finish()
     }
 
     override fun onRegisterFailure(error: String) {

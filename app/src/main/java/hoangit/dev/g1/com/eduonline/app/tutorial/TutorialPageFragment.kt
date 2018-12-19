@@ -10,6 +10,7 @@ import com.squareup.picasso.Picasso
 import hoangit.dev.g1.com.eduonline.R
 import hoangit.dev.g1.com.eduonline.app.login.LoginActivity
 import hoangit.dev.g1.com.eduonline.base.BaseFragment
+import hoangit.dev.g1.com.eduonline.utils.AppConfig
 
 class TutorialPageFragment : BaseFragment(), View.OnClickListener {
 
@@ -63,7 +64,7 @@ class TutorialPageFragment : BaseFragment(), View.OnClickListener {
             R.id.btn_skip_tutorial -> {
                 var intent = Intent(context, LoginActivity::class.java)
                 startActivityWithTransition(intent)
-//                ConfigApp.getInstances().setFirstOpenApp(false)
+                AppConfig.getInstances().setFirstOpenApp(false)
                 activity!!.finish()
             }
         }

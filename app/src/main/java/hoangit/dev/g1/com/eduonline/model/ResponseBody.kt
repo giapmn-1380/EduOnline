@@ -2,6 +2,7 @@ package hoangit.dev.g1.com.eduonline.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import hoangit.dev.g1.com.eduonline.entites.DataUser
 
 class ResponseBody {
 
@@ -16,5 +17,10 @@ class ResponseBody {
     @SerializedName("message")
     @Expose
     val message: String? = null
+
+    @SerializedName("data")
+    @Expose
+    val data: DataUser? = null
+
 
 }

@@ -102,6 +102,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener, LoginView {
             }
             R.id.tv_login_after -> {
                 goToHome()
+                finish()
             }
         }
     }
@@ -129,9 +130,9 @@ class LoginActivity : BaseActivity(), View.OnClickListener, LoginView {
 
     override fun onLoginSuccess() {
         Log.d(TAG, "onLoginSuccess")
-
         dismisProgressLoading()
         goToHome()
+        finish()
     }
 
     override fun onLoginFailure(error: String) {

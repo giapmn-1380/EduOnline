@@ -1,5 +1,6 @@
 package hoangit.dev.g1.com.eduonline.app.login
 
+import com.google.gson.Gson
 import hoangit.dev.g1.com.eduonline.api.APIUtils
 import hoangit.dev.g1.com.eduonline.model.ResponseBody
 import hoangit.dev.g1.com.eduonline.utils.Const
@@ -17,7 +18,12 @@ class LoginInteractor {
                 if (response.isSuccessful) {
                     val status = response.body()!!.status
                     if (status == Const.RESPONSE_SUCCESS) {
-                        listener.onLoginSuccess()
+                        val error = response.body()!!.error
+                        if (error!!) {
+                            listener.onLoginFailure(response.body()!!.message!!)
+                        } else {
+                            listener.onLoginSuccess(response.body()!!.data!!)
+                        }
                     } else {
                         listener.onLoginFailure(response.toString())
                     }

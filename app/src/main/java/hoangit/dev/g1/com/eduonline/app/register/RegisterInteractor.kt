@@ -23,7 +23,12 @@ class RegisterInteractor {
                     val status = response.body()!!.status
                     status.let {
                         if (it == Const.RESPONSE_SUCCESS) {
-                            onSignUpListener.onRegisterSuccess()
+                            val error = response.body()!!.error
+                            if (error!!) {
+                                onSignUpListener.onRegisterFailure(response.body()!!.message!!)
+                            } else {
+                                onSignUpListener.onRegisterSuccess(response.body()!!.data!!)
+                            }
                         } else {
                             onSignUpListener.onRegisterFailure(response.toString())
                         }

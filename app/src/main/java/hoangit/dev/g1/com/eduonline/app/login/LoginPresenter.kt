@@ -6,6 +6,9 @@ import com.facebook.FacebookCallback
 import com.facebook.FacebookException
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
+import com.google.gson.Gson
+import hoangit.dev.g1.com.eduonline.entites.DataUser
+import hoangit.dev.g1.com.eduonline.utils.AppConfig
 import java.util.*
 
 class LoginPresenter(val loginView: LoginView, val loginActivity: LoginActivity) : LoginView.OnLoginListener {
@@ -61,8 +64,9 @@ class LoginPresenter(val loginView: LoginView, val loginActivity: LoginActivity)
         callbackManager.onActivityResult(requestCode, resultCode, data)
     }
 
-    override fun onLoginSuccess() {
+    override fun onLoginSuccess(userData: DataUser) {
         loginView.onLoginSuccess()
+        AppConfig.getInstances().setUserData(Gson().toJson(userData))
     }
 
     override fun onLoginFailure(error: String) {

@@ -2,6 +2,7 @@ package hoangit.dev.g1.com.eduonline.app.login
 
 import com.facebook.FacebookException
 import com.facebook.login.LoginResult
+import hoangit.dev.g1.com.eduonline.entites.DataUser
 
 interface LoginView {
 
@@ -15,7 +16,7 @@ interface LoginView {
     fun onLoginFailure(error: String)
 
     interface OnLoginListener {
-        fun onLoginSuccess()
+        fun onLoginSuccess(userData: DataUser)
         fun onLoginFailure(error: String)
     }
 }

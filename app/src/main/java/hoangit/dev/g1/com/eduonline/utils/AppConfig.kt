@@ -2,23 +2,25 @@ package hoangit.dev.g1.com.eduonline.utils
 
 import android.content.Context
 
-class ConfigApp(var context: Context) {
+class AppConfig(var context: Context) {
 
     companion object {
 
         const val CONFIG_APP = "config_app"
         const val KEY_FIRST_OPEND_APP = "first_opend_app"
         const val KEY_LOCALE_LANGUGE = "locale_languge"
+        const val KEY_USER_DATA = "user_data"
 
-        var instance: ConfigApp? = null
+
+        var instance: AppConfig? = null
 
         fun init(context: Context) {
             if (instance == null) {
-                instance = ConfigApp(context)
+                instance = AppConfig(context)
             }
         }
 
-        fun getInstances(): ConfigApp {
+        fun getInstances(): AppConfig {
             return instance!!
         }
     }
@@ -43,5 +45,16 @@ class ConfigApp(var context: Context) {
         var sharedPreferences = context.getSharedPreferences(CONFIG_APP, Context.MODE_PRIVATE)
         val edittor = sharedPreferences.edit().putString(KEY_LOCALE_LANGUGE, value)
         edittor.commit()
+    }
+
+    fun setUserData(dataJson: String) {
+        var sharedPreferences = context.getSharedPreferences(CONFIG_APP, Context.MODE_PRIVATE)
+        val edittor = sharedPreferences.edit().putString(KEY_USER_DATA, dataJson)
+        edittor.commit()
+    }
+
+    fun getUserData(): String {
+        var sharedPreferences = context.getSharedPreferences(CONFIG_APP, Context.MODE_PRIVATE)
+        return sharedPreferences.getString(KEY_USER_DATA, Const.BLANK)
     }
 }

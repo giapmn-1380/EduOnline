@@ -2,6 +2,7 @@ package hoangit.dev.g1.com.eduonline.app.register
 
 import com.facebook.FacebookException
 import com.facebook.login.LoginResult
+import hoangit.dev.g1.com.eduonline.entites.DataUser
 
 
 interface RegisterView {
@@ -15,7 +16,7 @@ interface RegisterView {
     fun onRegisterFailure(error: String)
 
     interface OnRegisterListener {
-        fun onRegisterSuccess()
+        fun onRegisterSuccess(userData: DataUser)
         fun onRegisterFailure(error: String)
     }
 }
