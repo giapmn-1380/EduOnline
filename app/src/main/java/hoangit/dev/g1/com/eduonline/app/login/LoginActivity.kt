@@ -1,9 +1,6 @@
 package hoangit.dev.g1.com.eduonline.app.login
 
 import android.content.Intent
-import android.os.Build
-import android.support.annotation.RequiresApi
-import android.support.design.widget.Snackbar
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -12,7 +9,7 @@ import android.widget.TextView
 import com.facebook.FacebookException
 import com.facebook.login.LoginResult
 import hoangit.dev.g1.com.eduonline.R
-import hoangit.dev.g1.com.eduonline.app.home.HomeActivity
+import hoangit.dev.g1.com.eduonline.app.main.MainActivity
 import hoangit.dev.g1.com.eduonline.app.register.RegisterActivity
 import hoangit.dev.g1.com.eduonline.base.BaseActivity
 import hoangit.dev.g1.com.eduonline.extension.closeKeyboard
@@ -72,7 +69,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener, LoginView {
     }
 
     fun goToHome() {
-        val intent = Intent(this, HomeActivity::class.java)
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
 

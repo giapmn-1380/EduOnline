@@ -7,14 +7,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context=".app.home.HomeActivity">
+        tools:context=".app.main.MainActivity">
 
     <include layout="@layout/tool_bar"/>
 
-    <LinearLayout
+    <android.support.v4.view.ViewPager
             android:layout_weight="1"
+            android:id="@+id/view_page_main"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></LinearLayout>
+            android:layout_height="match_parent">
+    </android.support.v4.view.ViewPager>
 
     <LinearLayout
             android:layout_width="match_parent"

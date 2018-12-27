@@ -16,6 +16,7 @@ public class DataUser {
     @SerializedName("avatar")
     @Expose
     private Avatar avatar;
+
     @SerializedName("role")
     @Expose
     private String role;

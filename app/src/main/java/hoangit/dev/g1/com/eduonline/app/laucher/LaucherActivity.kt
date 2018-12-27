@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Handler
 import android.text.TextUtils
 import hoangit.dev.g1.com.eduonline.R
-import hoangit.dev.g1.com.eduonline.app.home.HomeActivity
+import hoangit.dev.g1.com.eduonline.app.main.MainActivity
 import hoangit.dev.g1.com.eduonline.app.login.LoginActivity
 import hoangit.dev.g1.com.eduonline.app.tutorial.TutorialFragment
 import hoangit.dev.g1.com.eduonline.base.BaseActivity
@@ -32,7 +32,7 @@ class LaucherActivity : BaseActivity() {
                     var intent = Intent(this, LoginActivity::class.java)
                     startActivity(intent)
                 } else {
-                    var intent = Intent(this, HomeActivity::class.java)
+                    var intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                 }
                 finish()

@@ -8,7 +8,7 @@ import android.widget.TextView
 import com.facebook.FacebookException
 import com.facebook.login.LoginResult
 import hoangit.dev.g1.com.eduonline.R
-import hoangit.dev.g1.com.eduonline.app.home.HomeActivity
+import hoangit.dev.g1.com.eduonline.app.main.MainActivity
 import hoangit.dev.g1.com.eduonline.base.BaseActivity
 import hoangit.dev.g1.com.eduonline.extension.closeKeyboard
 import hoangit.dev.g1.com.eduonline.extension.popBack
@@ -115,7 +115,7 @@ class RegisterActivity : BaseActivity(), View.OnClickListener, RegisterView {
     }
 
     fun goToHome() {
-        val intent = Intent(this, HomeActivity::class.java)
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
 
