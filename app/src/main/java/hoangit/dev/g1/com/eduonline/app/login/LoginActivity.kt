@@ -3,9 +3,6 @@ package hoangit.dev.g1.com.eduonline.app.login
 import android.content.Intent
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import com.facebook.FacebookException
 import com.facebook.login.LoginResult
 import hoangit.dev.g1.com.eduonline.R
@@ -16,19 +13,10 @@ import hoangit.dev.g1.com.eduonline.extension.closeKeyboard
 import hoangit.dev.g1.com.eduonline.extension.showSnackBar
 import hoangit.dev.g1.com.eduonline.extension.startActivityWithTransition
 import hoangit.dev.g1.com.eduonline.utils.Const
+import kotlinx.android.synthetic.main.activity_login.*
 
 
 class LoginActivity : BaseActivity(), View.OnClickListener, LoginView {
-
-    lateinit var btnFacebook: Button
-    lateinit var btnGoogle: Button
-    lateinit var btnLogin: Button
-
-    lateinit var tvRegister: TextView
-    lateinit var tvLoginAfer: TextView
-
-    lateinit var edtEmail: EditText
-    lateinit var edtPassword: EditText
 
     private var loginPresenter: LoginPresenter? = null
 
@@ -47,20 +35,12 @@ class LoginActivity : BaseActivity(), View.OnClickListener, LoginView {
     }
 
     private fun initViews() {
-        btnLogin = findViewById(R.id.btn_login)
-        btnLogin.setOnClickListener(this)
-        btnFacebook = findViewById(R.id.btn_fb)
-        btnFacebook.setOnClickListener(this)
-        btnGoogle = findViewById(R.id.btn_gg)
-        btnGoogle.setOnClickListener(this)
+        btn_login.setOnClickListener(this)
+        btn_fb.setOnClickListener(this)
+        btn_gg.setOnClickListener(this)
 
-        tvRegister = findViewById(R.id.tv_register)
-        tvRegister.setOnClickListener(this)
-        tvLoginAfer = findViewById(R.id.tv_login_after)
-        tvLoginAfer.setOnClickListener(this)
-
-        edtEmail = findViewById(R.id.edt_login_email)
-        edtPassword = findViewById(R.id.edt_login_password)
+        tv_register.setOnClickListener(this)
+        tv_register.setOnClickListener(this)
     }
 
     private fun initObject() {
@@ -81,7 +61,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener, LoginView {
                     loginPresenter.let {
                         showProgressLoadding()
                         closeKeyboard(v)
-                        it!!.actionLogin(edtEmail.text.toString(), edtPassword.text.toString())
+                        it!!.actionLogin(edt_login_email.text.toString(), edt_login_password.text.toString())
                     }
                 }
             }
@@ -147,14 +127,14 @@ class LoginActivity : BaseActivity(), View.OnClickListener, LoginView {
     }
 
     fun validate(): Boolean {
-        if (edtEmail.text.toString().trim().equals(Const.BLANK)) {
-            edtEmail.error = getString(R.string.error_input_email)
+        if (edt_login_email.text.toString().trim().equals(Const.BLANK)) {
+            edt_login_email.error = getString(R.string.error_input_email)
             return false
         }
 
-        if (edtPassword.text.toString().trim().equals(Const.BLANK)) {
-            edtPassword.setSelection(0)
-            edtPassword.error = getString(R.string.error_input_pass)
+        if (edt_login_password.text.toString().trim().equals(Const.BLANK)) {
+            edt_login_password.setSelection(0)
+            edt_login_password.error = getString(R.string.error_input_pass)
             return false
         }
         return true

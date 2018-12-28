@@ -8,10 +8,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import hoangit.dev.g1.com.eduonline.extension.addFragment
-import hoangit.dev.g1.com.eduonline.extension.replaceFragment
-import hoangit.dev.g1.com.eduonline.extension.showToast
-import hoangit.dev.g1.com.eduonline.extension.startActivityWithTransition
+import hoangit.dev.g1.com.eduonline.extension.*
 
 open abstract class BaseFragment : Fragment() {
 
@@ -44,6 +41,12 @@ open abstract class BaseFragment : Fragment() {
     fun showToast(context: Context, message: String) {
         if (activity is BaseActivity) {
             (activity as BaseActivity).showToast(context, message)
+        }
+    }
+
+    fun showSnackBar(message: String){
+        if (activity is BaseActivity) {
+            (activity as BaseActivity).showSnackBar(message)
         }
     }
 

@@ -2,9 +2,6 @@ package hoangit.dev.g1.com.eduonline.app.register
 
 import android.content.Intent
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import com.facebook.FacebookException
 import com.facebook.login.LoginResult
 import hoangit.dev.g1.com.eduonline.R
@@ -14,17 +11,9 @@ import hoangit.dev.g1.com.eduonline.extension.closeKeyboard
 import hoangit.dev.g1.com.eduonline.extension.popBack
 import hoangit.dev.g1.com.eduonline.extension.showSnackBar
 import hoangit.dev.g1.com.eduonline.utils.Const
+import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : BaseActivity(), View.OnClickListener, RegisterView {
-
-    private lateinit var tvLogin: TextView
-    private lateinit var edtFullName: EditText
-    private lateinit var edtEmail: EditText
-    private lateinit var edtPassword: EditText
-    private lateinit var edtReEnterPass: EditText
-    private lateinit var btnFacebook: Button
-    private lateinit var btnGoogle: Button
-    private lateinit var btnRegister: Button
 
     private var registerPresenter: RegisterPresenter? = null
 
@@ -42,20 +31,11 @@ class RegisterActivity : BaseActivity(), View.OnClickListener, RegisterView {
     }
 
     private fun initViews() {
-        btnRegister = findViewById(R.id.btn_register)
-        btnFacebook = findViewById(R.id.btn_fb)
-        btnGoogle = findViewById(R.id.btn_gg)
-        btnRegister.setOnClickListener(this)
-        btnFacebook.setOnClickListener(this)
-        btnGoogle.setOnClickListener(this)
+        btn_register.setOnClickListener(this)
+        btn_fb.setOnClickListener(this)
+        btn_gg.setOnClickListener(this)
 
-        edtFullName = findViewById(R.id.edt_register_full_name)
-        edtEmail = findViewById(R.id.edt_register_email)
-        edtPassword = findViewById(R.id.edt_register_password)
-        edtReEnterPass = findViewById(R.id.edt_register_re_enter_pass)
-
-        tvLogin = findViewById(R.id.tv_login)
-        tvLogin.setOnClickListener(this)
+        tv_login.setOnClickListener(this)
     }
 
 
@@ -66,9 +46,9 @@ class RegisterActivity : BaseActivity(), View.OnClickListener, RegisterView {
                 if (validate()) registerPresenter.let {
                     showProgressLoadding()
                     it!!.actionRegister(
-                        edtFullName.text.toString(),
-                        edtEmail.text.toString(),
-                        edtPassword.text.toString().trim()
+                        edt_register_full_name.text.toString(),
+                        edt_register_email.text.toString(),
+                        edt_register_password.text.toString().trim()
                     )
                 }
             }
@@ -87,27 +67,27 @@ class RegisterActivity : BaseActivity(), View.OnClickListener, RegisterView {
     }
 
     private fun validate(): Boolean {
-        if (edtFullName.text.toString().trim() == Const.BLANK) {
-            edtFullName.error = getString(R.string.error_input_email)
+        if (edt_register_full_name.text.toString().trim() == Const.BLANK) {
+            edt_register_full_name.error = getString(R.string.error_input_email)
             return false
         }
 
-        if (edtEmail.text.toString().trim() == Const.BLANK) {
-            edtEmail.error = getString(R.string.error_input_email)
+        if (edt_register_email.text.toString().trim() == Const.BLANK) {
+            edt_register_email.error = getString(R.string.error_input_email)
             return false
         }
 
-        if (edtPassword.text.toString().trim() == Const.BLANK) {
-            edtPassword.setSelection(0)
-            edtPassword.error = getString(R.string.error_input_pass)
+        if (edt_register_password.text.toString().trim() == Const.BLANK) {
+            edt_register_password.setSelection(0)
+            edt_register_password.error = getString(R.string.error_input_pass)
             return false
         }
-        if (edtReEnterPass.text.toString().trim() == Const.BLANK) {
-            edtReEnterPass.error = getString(R.string.error_input_email)
+        if (edt_register_re_enter_pass.text.toString().trim() == Const.BLANK) {
+            edt_register_re_enter_pass.error = getString(R.string.error_input_email)
             return false
         }
 
-        if (edtPassword.text.toString().trim() != edtReEnterPass.text.toString().trim()) {
+        if (edt_register_password.text.toString().trim() != edt_register_re_enter_pass.text.toString().trim()) {
             showSnackBar(getString(R.string.password_invalid))
             return false
         }

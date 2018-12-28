@@ -8,6 +8,7 @@ class Const {
 
         const val URL_LOGIN = "/api/login.json"
         const val URL_SIGN_UP = "/api/signup.json"
+        const val URL_LIST_CATEROGY = "/api/categories.json"
 
         val RESPONSE_SUCCESS = 200
 
