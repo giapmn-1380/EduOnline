@@ -1,5 +1,6 @@
 package hoangit.dev.g1.com.eduonline.app.main.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
@@ -10,8 +11,10 @@ import android.widget.LinearLayout
 import hoangit.dev.g1.com.eduonline.R
 import hoangit.dev.g1.com.eduonline.adapter.CategoriesAdapter
 import hoangit.dev.g1.com.eduonline.adapter.CourseAdapter
+import hoangit.dev.g1.com.eduonline.app.categories.CategoriesActivity
 import hoangit.dev.g1.com.eduonline.base.BaseFragment
 import hoangit.dev.g1.com.eduonline.entites.Category
+import hoangit.dev.g1.com.eduonline.utils.Const
 import io.supercharge.shimmerlayout.ShimmerLayout
 
 class HomeFragment : BaseFragment(), HomeView,
@@ -108,7 +111,15 @@ class HomeFragment : BaseFragment(), HomeView,
     }
 
     override fun onClickReadMoreCategory(position: Int) {
-        showSnackBar(categoriesAdapter.arrData!!.get(position).name)
+        val categoryID = categoriesAdapter.arrData!!.get(position).id
+        val categoryName = categoriesAdapter.arrData!!.get(position).name
+        val intent = Intent(this@HomeFragment.context, CategoriesActivity::class.java)
+
+        val bundle: Bundle = Bundle()
+        bundle.putLong(Const.KEY_CATEGORY_ID, categoryID)
+        bundle.putString(Const.KEY_CATEGORY_NAME, categoryName)
+        intent.putExtra(Const.KEY_BUNDLE_CATEGORY, bundle)
+        startActivity(intent)
     }
 
     override fun onClickItemCourse(courseAdapter: CourseAdapter, position: Int) {

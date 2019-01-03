@@ -36,7 +36,9 @@
     <string name="my_course">Khóa học của tôi</string>
 
     <string name="view_all_category">Xem tất cả</string>
-    <string name="money_sample"><u>700.000 đ</u></string>
+    <string name="money_sample">
+        <u>700.000 đ</u>
+    </string>
     <string name="unit_money"> Đ</string>
 
 </resources>

@@ -9,8 +9,13 @@ class Const {
         const val URL_LOGIN = "/api/login.json"
         const val URL_SIGN_UP = "/api/signup.json"
         const val URL_LIST_CATEROGY = "/api/categories.json"
+        const val URL_DETAIL_CATEROGY = "/api/categories/{id}.json"
 
         val RESPONSE_SUCCESS = 200
+
+        const val KEY_BUNDLE_CATEGORY = "key_bundle_category"
+        const val KEY_CATEGORY_NAME = "key_category_name"
+        const val KEY_CATEGORY_ID = "key_category_id"
 
     }
 }

@@ -18,4 +18,5 @@
     <dimen name="height_tool_bar">56dp</dimen>
     <dimen name="dimen_10">10dp</dimen>
     <dimen name="dimen_8">8dp</dimen>
+    <dimen name="height_item_categories_detail">100dp</dimen>
 </resources>
