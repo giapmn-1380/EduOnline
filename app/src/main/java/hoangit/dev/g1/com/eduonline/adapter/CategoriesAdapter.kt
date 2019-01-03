@@ -9,9 +9,10 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import hoangit.dev.g1.com.eduonline.R
+import hoangit.dev.g1.com.eduonline.app.main.home.HomeFragment
 import hoangit.dev.g1.com.eduonline.entites.Category
 
-class CategoriesAdapter(val context: Context) : RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
+class CategoriesAdapter(val homeFragment: HomeFragment) : RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
 
     var arrData: ArrayList<Category>? = arrayListOf()
     var listner: OnButtonReadMoreCategoryListener? = null
@@ -27,7 +28,7 @@ class CategoriesAdapter(val context: Context) : RecyclerView.Adapter<CategoriesA
 
     override fun onBindViewHolder(hoder: ViewHolder, position: Int) {
         hoder.tvTitleCategory.text = arrData!!.get(position).name
-        hoder.courseAdapter = CourseAdapter(context, arrData!!.get(position).courses)
+        hoder.courseAdapter = CourseAdapter(homeFragment.context!!, arrData!!.get(position).courses, homeFragment)
         hoder.rcCategory.adapter = hoder.courseAdapter
     }
 
@@ -46,7 +47,7 @@ class CategoriesAdapter(val context: Context) : RecyclerView.Adapter<CategoriesA
             tvTitleCategory = itemView.findViewById(R.id.tv_item_home_tile)
 
             rcCategory = view.findViewById(R.id.rc_item_course)
-            val layoutManager: LinearLayoutManager = LinearLayoutManager(context)
+            val layoutManager: LinearLayoutManager = LinearLayoutManager(homeFragment.context!!)
             layoutManager.orientation = LinearLayoutManager.HORIZONTAL
             rcCategory.layoutManager = layoutManager
 

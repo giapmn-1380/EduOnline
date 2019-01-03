@@ -9,18 +9,20 @@ import android.view.View
 import android.widget.LinearLayout
 import hoangit.dev.g1.com.eduonline.R
 import hoangit.dev.g1.com.eduonline.adapter.CategoriesAdapter
+import hoangit.dev.g1.com.eduonline.adapter.CourseAdapter
 import hoangit.dev.g1.com.eduonline.base.BaseFragment
 import hoangit.dev.g1.com.eduonline.entites.Category
 import io.supercharge.shimmerlayout.ShimmerLayout
 
-class HomeFragment : BaseFragment(), HomeView, CategoriesAdapter.OnButtonReadMoreCategoryListener {
-
+class HomeFragment : BaseFragment(), HomeView,
+    CategoriesAdapter.OnButtonReadMoreCategoryListener,
+    CourseAdapter.OnItemCourseClickListener {
 
     var homePresenter: HomePresenter? = null
     lateinit var categoriesAdapter: CategoriesAdapter
     lateinit var rcHome: RecyclerView
     lateinit var viewPlaceHolder: LinearLayout
-    lateinit var rootView:View
+    lateinit var rootView: View
 
     val arrShimer = arrayOf(
         R.id.shimmer_text_1, R.id.shimmer_text_2, R.id.shimmer_text_3, R.id.shimmer_text_4, R.id.shimmer_text_5,
@@ -53,7 +55,7 @@ class HomeFragment : BaseFragment(), HomeView, CategoriesAdapter.OnButtonReadMor
 
     private fun initObject() {
         homePresenter = HomePresenter(this, this)
-        categoriesAdapter = CategoriesAdapter(this@HomeFragment.context!!)
+        categoriesAdapter = CategoriesAdapter(this@HomeFragment)
         categoriesAdapter.setOnButtonReadMoreCategoryListener(this)
     }
 
@@ -81,7 +83,7 @@ class HomeFragment : BaseFragment(), HomeView, CategoriesAdapter.OnButtonReadMor
     }
 
     fun handleLoadingHolder(view: View, isPlay: Boolean) {
-        for (i in 0..arrShimer.size -1) {
+        for (i in 0..arrShimer.size - 1) {
             if (isPlay) {
                 view.findViewById<View>(arrShimer.get(i)).findViewById<ShimmerLayout>(R.id.shimmer_text)
                     .startShimmerAnimation()
@@ -107,6 +109,10 @@ class HomeFragment : BaseFragment(), HomeView, CategoriesAdapter.OnButtonReadMor
 
     override fun onClickReadMoreCategory(position: Int) {
         showSnackBar(categoriesAdapter.arrData!!.get(position).name)
+    }
+
+    override fun onClickItemCourse(courseAdapter: CourseAdapter, position: Int) {
+        showSnackBar(courseAdapter.arrDataCourse!!.get(position).name)
     }
 
 }

@@ -16,4 +16,6 @@
     <dimen name="tiny_padding">3dp</dimen>
     <dimen name="dimen_5">5dp</dimen>
     <dimen name="height_tool_bar">56dp</dimen>
+    <dimen name="dimen_10">10dp</dimen>
+    <dimen name="dimen_8">8dp</dimen>
 </resources>
