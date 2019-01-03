@@ -35,7 +35,7 @@ class CategoriesAdapter(val context: Context) : RecyclerView.Adapter<CategoriesA
     inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
 
 
-        lateinit var rcCategory: RecyclerView
+        var rcCategory: RecyclerView
         var tvTitleCategory: TextView
         var btnReadMore: Button
         var courseAdapter: CourseAdapter?=null

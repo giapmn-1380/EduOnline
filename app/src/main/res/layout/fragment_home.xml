@@ -1,13 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:gravity="center"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@color/bg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
     <android.support.v7.widget.RecyclerView
             android:id="@+id/rc_home"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
-</LinearLayout>
+    <LinearLayout
+            android:visibility="gone"
+            android:background="@color/bg"
+            android:id="@+id/view_place_holder"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:paddingTop="10dp"
+                android:paddingLeft="10dp"
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <include
+                    android:id="@+id/shimmer_text_1"
+                    layout="@layout/item_course_holder"/>
+            <include
+                    android:id="@+id/shimmer_text_2"
+                    layout="@layout/item_course_holder"/>
+            <include
+                    android:id="@+id/shimmer_text_3"
+                    layout="@layout/item_course_holder"/>
+            <include
+                    android:id="@+id/shimmer_text_4"
+                    layout="@layout/item_course_holder"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:paddingLeft="10dp"
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <include
+                    android:id="@+id/shimmer_text_5"
+                    layout="@layout/item_course_holder"/>
+            <include
+                    android:id="@+id/shimmer_text_6"
+                    layout="@layout/item_course_holder"/>
+            <include
+                    android:id="@+id/shimmer_text_7"
+                    layout="@layout/item_course_holder"/>
+            <include
+                    android:id="@+id/shimmer_text_8"
+                    layout="@layout/item_course_holder"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:paddingLeft="10dp"
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <include
+                    android:id="@+id/shimmer_text_9"
+                    layout="@layout/item_course_holder"/>
+            <include
+                    android:id="@+id/shimmer_text_10"
+                    layout="@layout/item_course_holder"/>
+            <include
+                    android:id="@+id/shimmer_text_11"
+                    layout="@layout/item_course_holder"/>
+            <include
+                    android:id="@+id/shimmer_text_12"
+                    layout="@layout/item_course_holder"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

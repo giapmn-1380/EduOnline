@@ -99,4 +99,28 @@ public class Course {
     public void setCategoryId(Long categoryId) {
         this.categoryId = categoryId;
     }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
+    public Integer getPercentSale() {
+        return percentSale;
+    }
+
+    public void setPercentSale(Integer percentSale) {
+        this.percentSale = percentSale;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
 }
