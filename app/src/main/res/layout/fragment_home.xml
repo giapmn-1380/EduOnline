@@ -6,7 +6,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-    <android.support.v7.widget.RecyclerView
+    <hoangit.dev.g1.com.eduonline.view.RecycleViewCustom
             android:id="@+id/rc_home"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
@@ -18,6 +18,13 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+        <TextView
+                android:layout_marginLeft="@dimen/dimen_10"
+                android:layout_marginTop="@dimen/dimen_10"
+                android:background="@color/grey_light"
+                android:layout_width="180dp"
+                android:layout_height="20dp"/>
 
         <LinearLayout
                 android:paddingTop="10dp"
@@ -39,6 +46,12 @@
                     layout="@layout/item_course_holder"/>
         </LinearLayout>
 
+        <TextView
+                android:layout_margin="@dimen/dimen_10"
+                android:background="@color/grey_light"
+                android:layout_width="180dp"
+                android:layout_height="20dp"/>
+
         <LinearLayout
                 android:paddingLeft="10dp"
                 android:gravity="center_horizontal"
@@ -57,6 +70,12 @@
                     android:id="@+id/shimmer_text_8"
                     layout="@layout/item_course_holder"/>
         </LinearLayout>
+
+        <TextView
+                android:layout_margin="@dimen/dimen_10"
+                android:background="@color/grey_light"
+                android:layout_width="180dp"
+                android:layout_height="20dp"/>
 
         <LinearLayout
                 android:paddingLeft="10dp"

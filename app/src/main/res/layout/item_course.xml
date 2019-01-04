@@ -85,7 +85,7 @@
                         android:id="@+id/tv_course_cost_sale_off"
                         android:textSize="12sp"
                         android:textStyle="bold"
-                        android:textColor="@color/colorAccent"
+                        android:textColor="@color/red"
                         android:text="599.000 Đ"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>

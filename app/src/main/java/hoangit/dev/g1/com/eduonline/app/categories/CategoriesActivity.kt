@@ -1,21 +1,22 @@
 package hoangit.dev.g1.com.eduonline.app.categories
 
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.View
 import hoangit.dev.g1.com.eduonline.R
 import hoangit.dev.g1.com.eduonline.adapter.CategoriesDetailAdapter
 import hoangit.dev.g1.com.eduonline.base.BaseActivity
 import hoangit.dev.g1.com.eduonline.entites.Category
 import hoangit.dev.g1.com.eduonline.extension.showSnackBar
-import kotlinx.android.synthetic.main.tool_bar.*
+import hoangit.dev.g1.com.eduonline.utils.Const
+import hoangit.dev.g1.com.eduonline.view.RecycleViewCustom
+import kotlinx.android.synthetic.main.activity_categories.*
+import kotlinx.android.synthetic.main.tool_bar_non_logo.*
 
-class CategoriesActivity : BaseActivity(), View.OnClickListener, CategoriesView {
-
+class CategoriesActivity : BaseActivity(), View.OnClickListener, CategoriesView, CategoriesDetailAdapter.OnItemCategoryDetailClickListener {
 
     lateinit var categoriesPresenter: CategoriesPresenter
     var categoriesDetailAdapter: CategoriesDetailAdapter? = null
-    lateinit var rcCategoriesDetail: RecyclerView
+    lateinit var rcCategoriesDetail: RecycleViewCustom
 
 
     override fun getLayoutID(): Int {
@@ -23,27 +24,47 @@ class CategoriesActivity : BaseActivity(), View.OnClickListener, CategoriesView 
     }
 
     override fun onCreateActivity() {
-        categoriesDetailAdapter = CategoriesDetailAdapter(this@CategoriesActivity)
+        initObject()
+        initViews()
+        featchData()
+    }
 
-        imv_back.setOnClickListener(this)
-
+    private fun initViews() {
         rcCategoriesDetail = findViewById(R.id.rc_categories_detail)
         val layoutManager: LinearLayoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         rcCategoriesDetail.layoutManager = layoutManager
         rcCategoriesDetail.adapter = categoriesDetailAdapter
 
+        imv_back.setOnClickListener(this)
+        tv_title_tool_bar.text = intent.getBundleExtra(Const.KEY_BUNDLE_CATEGORY).getString(Const.KEY_CATEGORY_NAME)
+
+        shimmer_text.startShimmerAnimation()
+    }
+
+    private fun initObject() {
+        categoriesDetailAdapter = CategoriesDetailAdapter(this@CategoriesActivity, this@CategoriesActivity)
         categoriesPresenter = CategoriesPresenter(this@CategoriesActivity, this@CategoriesActivity)
+    }
+
+    fun featchData() {
         categoriesPresenter.actionFeatchData()
     }
 
     override fun featchDataDetailSuccess(data: Category) {
         categoriesDetailAdapter!!.arrCourse = data.courses
         categoriesDetailAdapter!!.notifyDataSetChanged()
+        stopShimerLoadingLayout()
+
     }
 
     override fun featchDataDetailFailure(error: String) {
+        stopShimerLoadingLayout()
         showSnackBar(error)
+    }
+
+    override fun onClickItemCategoryDetail(position: Int) {
+        showSnackBar(categoriesDetailAdapter!!.arrCourse.get(position).name)
     }
 
 
@@ -54,5 +75,10 @@ class CategoriesActivity : BaseActivity(), View.OnClickListener, CategoriesView 
                 finish()
             }
         }
+    }
+
+    fun stopShimerLoadingLayout(){
+        shimmer_text.stopShimmerAnimation()
+        shimmer_text.visibility = View.GONE
     }
 }

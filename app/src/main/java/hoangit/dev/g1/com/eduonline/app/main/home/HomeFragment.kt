@@ -15,6 +15,7 @@ import hoangit.dev.g1.com.eduonline.app.categories.CategoriesActivity
 import hoangit.dev.g1.com.eduonline.base.BaseFragment
 import hoangit.dev.g1.com.eduonline.entites.Category
 import hoangit.dev.g1.com.eduonline.utils.Const
+import hoangit.dev.g1.com.eduonline.view.RecycleViewCustom
 import io.supercharge.shimmerlayout.ShimmerLayout
 
 class HomeFragment : BaseFragment(), HomeView,
@@ -23,7 +24,7 @@ class HomeFragment : BaseFragment(), HomeView,
 
     var homePresenter: HomePresenter? = null
     lateinit var categoriesAdapter: CategoriesAdapter
-    lateinit var rcHome: RecyclerView
+    lateinit var rcHome: RecycleViewCustom
     lateinit var viewPlaceHolder: LinearLayout
     lateinit var rootView: View
 
@@ -98,16 +99,20 @@ class HomeFragment : BaseFragment(), HomeView,
     }
 
     override fun featchDataSuccess(data: ArrayList<Category>) {
-        //Close view place holder item
-        viewPlaceHolder.visibility = View.GONE
-        handleLoadingHolder(rootView, false)
-
+        hideViewLoading()
         categoriesAdapter.arrData = data
         categoriesAdapter.notifyDataSetChanged()
     }
 
     override fun featchDataFailure(error: String) {
+        hideViewLoading()
         showSnackBar(error)
+    }
+
+    fun hideViewLoading() {
+        //Close view place holder item
+        viewPlaceHolder.visibility = View.GONE
+        handleLoadingHolder(rootView, false)
     }
 
     override fun onClickReadMoreCategory(position: Int) {

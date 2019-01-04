@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -9,18 +9,45 @@
 
     <include layout="@layout/tool_bar_non_logo"/>
 
-    <LinearLayout
+    <RelativeLayout
             android:background="@color/bg"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <android.support.v7.widget.RecyclerView
+        <hoangit.dev.g1.com.eduonline.view.RecycleViewCustom
                 android:layout_marginTop="@dimen/dimen_10"
                 android:id="@+id/rc_categories_detail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-        </android.support.v7.widget.RecyclerView>
+        </hoangit.dev.g1.com.eduonline.view.RecycleViewCustom>
 
-    </LinearLayout>
+
+        <io.supercharge.shimmerlayout.ShimmerLayout
+                android:id="@+id/shimmer_text"
+                app:shimmer_gradient_center_color_width="0.3"
+                app:shimmer_angle="25"
+                app:shimmer_color="@color/holder_categories_detail"
+                app:shimmer_animation_duration="1200"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:background="@color/bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <include layout="@layout/item_categories_detail_holder"/>
+                <include layout="@layout/item_categories_detail_holder"/>
+                <include layout="@layout/item_categories_detail_holder"/>
+                <include layout="@layout/item_categories_detail_holder"/>
+                <include layout="@layout/item_categories_detail_holder"/>
+                <include layout="@layout/item_categories_detail_holder"/>
+                <include layout="@layout/item_categories_detail_holder"/>
+                <include layout="@layout/item_categories_detail_holder"/>
+
+            </LinearLayout>
+        </io.supercharge.shimmerlayout.ShimmerLayout>
+    </RelativeLayout>
 </LinearLayout>

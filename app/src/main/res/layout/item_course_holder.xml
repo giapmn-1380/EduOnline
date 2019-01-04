@@ -8,7 +8,7 @@
 
     <io.supercharge.shimmerlayout.ShimmerLayout
             app:shimmer_gradient_center_color_width="0.8"
-            app:shimmer_angle="45"
+            app:shimmer_angle="25"
             app:shimmer_color="@color/holder"
             app:shimmer_animation_duration="1200"
             android:id="@+id/shimmer_text"

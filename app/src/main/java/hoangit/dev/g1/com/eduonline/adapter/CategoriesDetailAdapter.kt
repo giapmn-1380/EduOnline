@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -14,7 +15,7 @@ import hoangit.dev.g1.com.eduonline.R
 import hoangit.dev.g1.com.eduonline.entites.Course
 import hoangit.dev.g1.com.eduonline.utils.Utils
 
-class CategoriesDetailAdapter(val context: Context) : RecyclerView.Adapter<CategoriesDetailAdapter.ViewHolder>() {
+class CategoriesDetailAdapter(val context: Context, val onItemCategoryDetailClickListener: OnItemCategoryDetailClickListener) : RecyclerView.Adapter<CategoriesDetailAdapter.ViewHolder>() {
 
 
     var arrCourse: ArrayList<Course> = arrayListOf()
@@ -44,13 +45,14 @@ class CategoriesDetailAdapter(val context: Context) : RecyclerView.Adapter<Categ
     }
 
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         var imvCategoriesDetail: ImageView
         var tvCategoryItemCourseAuthor: TextView
         var tvCategoryItemCourseName: TextView
         var tvCourseCostSaleOff: TextView
         var tvCourseCost: TextView
+        var llClickItem:LinearLayout
 
         init {
             imvCategoriesDetail = itemView.findViewById(R.id.imv_categories_detail)
@@ -59,6 +61,14 @@ class CategoriesDetailAdapter(val context: Context) : RecyclerView.Adapter<Categ
             tvCourseCostSaleOff = itemView.findViewById(R.id.tv_course_cost_sale_off)
             tvCourseCost = itemView.findViewById(R.id.tv_course_cost)
             tvCourseCost.setPaintFlags(tvCourseCost.getPaintFlags() or Paint.STRIKE_THRU_TEXT_FLAG)
+            llClickItem = itemView.findViewById(R.id.ll_on_click_item_category_detail)
+            llClickItem.setOnClickListener {
+                onItemCategoryDetailClickListener.onClickItemCategoryDetail(adapterPosition)
+            }
         }
+    }
+
+    interface OnItemCategoryDetailClickListener {
+        fun onClickItemCategoryDetail(position: Int)
     }
 }
