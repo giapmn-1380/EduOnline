@@ -2,10 +2,7 @@ package hoangit.dev.g1.com.eduonline.app.main.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import hoangit.dev.g1.com.eduonline.R
@@ -15,18 +12,22 @@ import hoangit.dev.g1.com.eduonline.app.categories.CategoriesActivity
 import hoangit.dev.g1.com.eduonline.base.BaseFragment
 import hoangit.dev.g1.com.eduonline.entites.Category
 import hoangit.dev.g1.com.eduonline.utils.Const
+import hoangit.dev.g1.com.eduonline.utils.IPreloadAPI
 import hoangit.dev.g1.com.eduonline.view.RecycleViewCustom
 import io.supercharge.shimmerlayout.ShimmerLayout
 
 class HomeFragment : BaseFragment(), HomeView,
     CategoriesAdapter.OnButtonReadMoreCategoryListener,
-    CourseAdapter.OnItemCourseClickListener {
+    CourseAdapter.OnItemCourseClickListener, IPreloadAPI {
+
 
     var homePresenter: HomePresenter? = null
     lateinit var categoriesAdapter: CategoriesAdapter
     lateinit var rcHome: RecycleViewCustom
     lateinit var viewPlaceHolder: LinearLayout
     lateinit var rootView: View
+
+    var loadingState = IPreloadAPI.APIStatus.INIT
 
     val arrShimer = arrayOf(
         R.id.shimmer_text_1, R.id.shimmer_text_2, R.id.shimmer_text_3, R.id.shimmer_text_4, R.id.shimmer_text_5,
@@ -53,7 +54,12 @@ class HomeFragment : BaseFragment(), HomeView,
 
     private fun featchData() {
         homePresenter.let {
-            it!!.actionFeatchData()
+            if (isNetworkConnected()) {
+                it!!.actionFeatchData()
+                loadingState = IPreloadAPI.APIStatus.DOWNLOADING
+            } else {
+                showSnackBar(getString(R.string.internet_not_avaiable))
+            }
         }
     }
 
@@ -71,7 +77,7 @@ class HomeFragment : BaseFragment(), HomeView,
     override fun onViewReady(view: View) {
         rootView = view
         viewPlaceHolder = view.findViewById(R.id.view_place_holder)
-        if (categoriesAdapter.arrData!!.size == 0) {
+        if (categoriesAdapter.arrData!!.size == 0 && loadingState == IPreloadAPI.APIStatus.DOWNLOADING) {
             viewPlaceHolder.visibility = View.VISIBLE
         } else {
             viewPlaceHolder.visibility = View.GONE
@@ -98,13 +104,19 @@ class HomeFragment : BaseFragment(), HomeView,
         }
     }
 
+    override fun needToFeatchData(): Boolean {
+        return loadingState == IPreloadAPI.APIStatus.INIT || loadingState == IPreloadAPI.APIStatus.DOWNLOAD_FAILED
+    }
+
     override fun featchDataSuccess(data: ArrayList<Category>) {
+        loadingState = IPreloadAPI.APIStatus.DOWNLOADED
         hideViewLoading()
         categoriesAdapter.arrData = data
         categoriesAdapter.notifyDataSetChanged()
     }
 
     override fun featchDataFailure(error: String) {
+        loadingState = IPreloadAPI.APIStatus.DOWNLOAD_FAILED
         hideViewLoading()
         showSnackBar(error)
     }

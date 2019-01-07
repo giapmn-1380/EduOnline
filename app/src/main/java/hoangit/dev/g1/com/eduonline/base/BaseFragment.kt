@@ -44,7 +44,7 @@ open abstract class BaseFragment : Fragment() {
         }
     }
 
-    fun showSnackBar(message: String){
+    fun showSnackBar(message: String) {
         if (activity is BaseActivity) {
             (activity as BaseActivity).showSnackBar(message)
         }
@@ -66,6 +66,13 @@ open abstract class BaseFragment : Fragment() {
         if (activity is BaseActivity) {
             (activity as BaseActivity).startActivityWithTransition(intent)
         }
+    }
+
+    fun isNetworkConnected(): Boolean {
+        if (activity is BaseActivity) {
+            return (activity as BaseActivity).isNetworkState
+        }
+        return false
     }
 
 }

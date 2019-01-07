@@ -12,7 +12,8 @@ import hoangit.dev.g1.com.eduonline.view.RecycleViewCustom
 import kotlinx.android.synthetic.main.activity_categories.*
 import kotlinx.android.synthetic.main.tool_bar_non_logo.*
 
-class CategoriesActivity : BaseActivity(), View.OnClickListener, CategoriesView, CategoriesDetailAdapter.OnItemCategoryDetailClickListener {
+class CategoriesActivity : BaseActivity(), View.OnClickListener, CategoriesView,
+    CategoriesDetailAdapter.OnItemCategoryDetailClickListener {
 
     lateinit var categoriesPresenter: CategoriesPresenter
     var categoriesDetailAdapter: CategoriesDetailAdapter? = null
@@ -48,7 +49,11 @@ class CategoriesActivity : BaseActivity(), View.OnClickListener, CategoriesView,
     }
 
     fun featchData() {
-        categoriesPresenter.actionFeatchData()
+        if (isNetworkState) {
+            categoriesPresenter.actionFeatchData()
+        } else {
+            showSnackBar(getString(R.string.internet_not_avaiable))
+        }
     }
 
     override fun featchDataDetailSuccess(data: Category) {
@@ -77,7 +82,7 @@ class CategoriesActivity : BaseActivity(), View.OnClickListener, CategoriesView,
         }
     }
 
-    fun stopShimerLoadingLayout(){
+    fun stopShimerLoadingLayout() {
         shimmer_text.stopShimmerAnimation()
         shimmer_text.visibility = View.GONE
     }

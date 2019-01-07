@@ -39,7 +39,9 @@
     <string name="money_sample">
         <u>700.000 đ</u>
     </string>
-    <string name="unit_money"> Đ</string>
+    <string name="unit_money">Đ</string>
     <string name="no_data">Không có dữ liệu</string>
+    <string name="internet_not_avaiable">Mạng không có sẵn</string>
+
 
 </resources>

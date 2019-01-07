@@ -16,6 +16,7 @@ class Const {
         const val KEY_BUNDLE_CATEGORY = "key_bundle_category"
         const val KEY_CATEGORY_NAME = "key_category_name"
         const val KEY_CATEGORY_ID = "key_category_id"
+        const val ACTION_NETWORK_CHANGE = "android.net.conn.CONNECTIVITY_CHANGE"
 
     }
 }
