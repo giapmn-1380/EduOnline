@@ -2,6 +2,7 @@ package hoangit.dev.g1.com.eduonline.app.main.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.widget.LinearLayout
@@ -26,6 +27,8 @@ class HomeFragment : BaseFragment(), HomeView,
     lateinit var rcHome: RecycleViewCustom
     lateinit var viewPlaceHolder: LinearLayout
     lateinit var rootView: View
+
+    var swipeRefresh: SwipeRefreshLayout? = null
 
     var loadingState = IPreloadAPI.APIStatus.INIT
 
@@ -59,6 +62,9 @@ class HomeFragment : BaseFragment(), HomeView,
                 loadingState = IPreloadAPI.APIStatus.DOWNLOADING
             } else {
                 showSnackBar(getString(R.string.internet_not_avaiable))
+                swipeRefresh?.let {
+                    it.isRefreshing = false
+                }
             }
         }
     }
@@ -90,6 +96,14 @@ class HomeFragment : BaseFragment(), HomeView,
         rcHome.layoutManager = layoutManager
         rcHome.adapter = categoriesAdapter
 
+        swipeRefresh = view.findViewById(R.id.swipe_refresh)
+        swipeRefresh?.setOnRefreshListener(object : SwipeRefreshLayout.OnRefreshListener {
+
+            override fun onRefresh() {
+                featchData()
+            }
+        })
+
     }
 
     fun handleLoadingHolder(view: View, isPlay: Boolean) {
@@ -110,6 +124,7 @@ class HomeFragment : BaseFragment(), HomeView,
 
     override fun featchDataSuccess(data: ArrayList<Category>) {
         loadingState = IPreloadAPI.APIStatus.DOWNLOADED
+        swipeRefresh!!.isRefreshing = false
         hideViewLoading()
         categoriesAdapter.arrData = data
         categoriesAdapter.notifyDataSetChanged()
@@ -117,6 +132,7 @@ class HomeFragment : BaseFragment(), HomeView,
 
     override fun featchDataFailure(error: String) {
         loadingState = IPreloadAPI.APIStatus.DOWNLOAD_FAILED
+        swipeRefresh!!.isRefreshing = false
         hideViewLoading()
         showSnackBar(error)
     }

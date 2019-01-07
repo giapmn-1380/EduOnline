@@ -1,5 +1,6 @@
 package hoangit.dev.g1.com.eduonline.app.categories
 
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import hoangit.dev.g1.com.eduonline.R
@@ -41,6 +42,11 @@ class CategoriesActivity : BaseActivity(), View.OnClickListener, CategoriesView,
         tv_title_tool_bar.text = intent.getBundleExtra(Const.KEY_BUNDLE_CATEGORY).getString(Const.KEY_CATEGORY_NAME)
 
         shimmer_text.startShimmerAnimation()
+        swipe_refresh.setOnRefreshListener(object : SwipeRefreshLayout.OnRefreshListener {
+            override fun onRefresh() {
+                featchData()
+            }
+        })
     }
 
     private fun initObject() {
@@ -53,6 +59,7 @@ class CategoriesActivity : BaseActivity(), View.OnClickListener, CategoriesView,
             categoriesPresenter.actionFeatchData()
         } else {
             showSnackBar(getString(R.string.internet_not_avaiable))
+            stopRefresh()
         }
     }
 
@@ -60,10 +67,11 @@ class CategoriesActivity : BaseActivity(), View.OnClickListener, CategoriesView,
         categoriesDetailAdapter!!.arrCourse = data.courses
         categoriesDetailAdapter!!.notifyDataSetChanged()
         stopShimerLoadingLayout()
-
+        stopRefresh()
     }
 
     override fun featchDataDetailFailure(error: String) {
+        stopRefresh()
         stopShimerLoadingLayout()
         showSnackBar(error)
     }
@@ -85,5 +93,11 @@ class CategoriesActivity : BaseActivity(), View.OnClickListener, CategoriesView,
     fun stopShimerLoadingLayout() {
         shimmer_text.stopShimmerAnimation()
         shimmer_text.visibility = View.GONE
+    }
+
+    fun stopRefresh() {
+        swipe_refresh?.let {
+            it.isRefreshing = false
+        }
     }
 }

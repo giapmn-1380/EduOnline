@@ -29,10 +29,10 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        isNetworkState = isNetworkConnected()
+        registerBroadcastReciver()
         setContentView(getLayoutID())
         onCreateActivity()
-        registerBroadcastReciver()
-
     }
 
     override fun onPause() {
@@ -96,10 +96,7 @@ abstract class BaseActivity : AppCompatActivity() {
             if (action != null) {
                 when (action) {
                     Const.ACTION_NETWORK_CHANGE -> {
-                        val connectivityManager =
-                            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-                        val activeNetInfor = connectivityManager.getActiveNetworkInfo()
-                        isNetworkState = activeNetInfor != null && activeNetInfor.isConnected
+                        isNetworkState = isNetworkConnected()
                         if (isNetworkState) {
                             onNetworkConnectedListener?.let {
                                 it.onNetworkConnected()
@@ -113,5 +110,12 @@ abstract class BaseActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    fun isNetworkConnected(): Boolean {
+        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetInfor = connectivityManager.getActiveNetworkInfo()
+        isNetworkState = activeNetInfor != null && activeNetInfor.isConnected
+        return isNetworkState
     }
 }

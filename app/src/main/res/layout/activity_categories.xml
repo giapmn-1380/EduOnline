@@ -8,46 +8,51 @@
         tools:context=".app.categories.CategoriesActivity">
 
     <include layout="@layout/tool_bar_non_logo"/>
-
-    <RelativeLayout
-            android:background="@color/bg"
+    <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-        <hoangit.dev.g1.com.eduonline.view.RecycleViewCustom
-                android:layout_marginTop="@dimen/dimen_10"
-                android:id="@+id/rc_categories_detail"
+        <RelativeLayout
+                android:background="@color/bg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-        </hoangit.dev.g1.com.eduonline.view.RecycleViewCustom>
 
-
-        <io.supercharge.shimmerlayout.ShimmerLayout
-                android:id="@+id/shimmer_text"
-                app:shimmer_gradient_center_color_width="0.3"
-                app:shimmer_angle="25"
-                app:shimmer_color="@color/holder_categories_detail"
-                app:shimmer_animation_duration="1200"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            <LinearLayout
-                    android:orientation="vertical"
-                    android:background="@color/bg"
+            <hoangit.dev.g1.com.eduonline.view.RecycleViewCustom
+                    android:layout_marginTop="@dimen/dimen_10"
+                    android:id="@+id/rc_categories_detail"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                <include layout="@layout/item_categories_detail_holder"/>
-                <include layout="@layout/item_categories_detail_holder"/>
-                <include layout="@layout/item_categories_detail_holder"/>
-                <include layout="@layout/item_categories_detail_holder"/>
-                <include layout="@layout/item_categories_detail_holder"/>
-                <include layout="@layout/item_categories_detail_holder"/>
-                <include layout="@layout/item_categories_detail_holder"/>
-                <include layout="@layout/item_categories_detail_holder"/>
+            </hoangit.dev.g1.com.eduonline.view.RecycleViewCustom>
 
-            </LinearLayout>
-        </io.supercharge.shimmerlayout.ShimmerLayout>
-    </RelativeLayout>
+
+            <io.supercharge.shimmerlayout.ShimmerLayout
+                    android:id="@+id/shimmer_text"
+                    app:shimmer_gradient_center_color_width="0.3"
+                    app:shimmer_angle="25"
+                    app:shimmer_color="@color/holder_categories_detail"
+                    app:shimmer_animation_duration="1200"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:background="@color/bg"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <include layout="@layout/item_categories_detail_holder"/>
+                    <include layout="@layout/item_categories_detail_holder"/>
+                    <include layout="@layout/item_categories_detail_holder"/>
+                    <include layout="@layout/item_categories_detail_holder"/>
+                    <include layout="@layout/item_categories_detail_holder"/>
+                    <include layout="@layout/item_categories_detail_holder"/>
+                    <include layout="@layout/item_categories_detail_holder"/>
+                    <include layout="@layout/item_categories_detail_holder"/>
+
+                </LinearLayout>
+            </io.supercharge.shimmerlayout.ShimmerLayout>
+        </RelativeLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

@@ -6,11 +6,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-    <hoangit.dev.g1.com.eduonline.view.RecycleViewCustom
-            android:id="@+id/rc_home"
+    <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent">
 
+        <hoangit.dev.g1.com.eduonline.view.RecycleViewCustom
+                android:id="@+id/rc_home"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
     <LinearLayout
             android:visibility="gone"
             android:background="@color/bg"
