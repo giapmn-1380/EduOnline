@@ -5,13 +5,13 @@
             android:id="@+id/bottom_home"
             android:title="@string/home"/>
     <item
-            android:icon="@drawable/ic_search"
-            android:id="@+id/bottom_search"
-            android:title="@string/search"/>
-    <item
             android:icon="@drawable/ic_my_course"
             android:id="@+id/bottom_my_course"
             android:title="@string/my_course"/>
+    <item
+            android:icon="@drawable/ic_notification"
+            android:id="@+id/bottom_notification"
+            android:title="@string/notification"/>
     <item
             android:icon="@drawable/ic_settings"
             android:id="@+id/bottom_setting"

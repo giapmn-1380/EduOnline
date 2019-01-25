@@ -13,6 +13,9 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".app.search.SearchActivity">
+        </activity>
+
         <meta-data
                 android:name="com.facebook.sdk.ApplicationId"
                 android:value="@string/facebook_app_id"/>
@@ -59,8 +62,8 @@
                 android:screenOrientation="portrait"
                 android:theme="@style/AppTheme.NoActionBar.FullScreen"/>
         <activity
-                android:theme="@style/AppTheme.NoActionBar.FullScreen"
-                android:name=".app.categories.CategoriesActivity">
+                android:name=".app.categories.CategoriesActivity"
+                android:theme="@style/AppTheme.NoActionBar.FullScreen">
         </activity>
     </application>
 

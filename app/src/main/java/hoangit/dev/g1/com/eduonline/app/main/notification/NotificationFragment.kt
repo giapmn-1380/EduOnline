@@ -1,24 +1,24 @@
-package hoangit.dev.g1.com.eduonline.app.main.search
+package hoangit.dev.g1.com.eduonline.app.main.notification
 
 import android.view.View
 import hoangit.dev.g1.com.eduonline.R
 import hoangit.dev.g1.com.eduonline.base.BaseFragment
 
-class SearchFragment : BaseFragment() {
+class NotificationFragment : BaseFragment() {
 
     companion object {
-        var instance: SearchFragment? = null
+        var instance: NotificationFragment? = null
 
-        fun getInstances(): SearchFragment {
+        fun getInstances(): NotificationFragment {
             if (instance == null) {
-                instance = SearchFragment()
+                instance = NotificationFragment()
             }
             return instance!!
         }
     }
 
     override fun getLayoutID(): Int {
-        return R.layout.fragment_search
+        return R.layout.fragment_notification
     }
 
     override fun onViewReady(view: View) {

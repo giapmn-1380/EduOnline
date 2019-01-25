@@ -5,15 +5,13 @@ import android.support.design.widget.BottomNavigationView
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v4.view.ViewPager
-import android.text.TextUtils
 import android.view.MenuItem
 import android.view.View
 import hoangit.dev.g1.com.eduonline.R
 import hoangit.dev.g1.com.eduonline.adapter.MainPagerAdapter
-import hoangit.dev.g1.com.eduonline.app.login.LoginActivity
+import hoangit.dev.g1.com.eduonline.app.search.SearchActivity
 import hoangit.dev.g1.com.eduonline.base.BaseActivity
 import hoangit.dev.g1.com.eduonline.extension.startActivityWithTransition
-import hoangit.dev.g1.com.eduonline.utils.AppConfig
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.tool_bar.*
@@ -23,7 +21,7 @@ class MainActivity : BaseActivity(),
     BottomNavigationView.OnNavigationItemSelectedListener,
     View.OnClickListener {
 
-    val arrItemNav = arrayOf(R.id.bottom_home, R.id.bottom_search, R.id.bottom_my_course, R.id.bottom_setting)
+    val arrItemNav = arrayOf(R.id.bottom_home, R.id.bottom_notification, R.id.bottom_my_course, R.id.bottom_setting)
 
     override fun getLayoutID(): Int {
         return R.layout.activity_main
@@ -35,14 +33,6 @@ class MainActivity : BaseActivity(),
     }
 
     private fun initViews() {
-        val userData = AppConfig.getInstances().getUserData()
-        if (TextUtils.isEmpty(userData)){
-            tv_login.visibility = View.VISIBLE
-            tv_login.setOnClickListener(this)
-        } else {
-            tv_login.visibility = View.GONE
-        }
-
 
         val mainPagerAdapter: MainPagerAdapter = MainPagerAdapter(supportFragmentManager)
         view_page_main.adapter = mainPagerAdapter
@@ -60,7 +50,8 @@ class MainActivity : BaseActivity(),
             }
         })
 
-        imv_back.setOnClickListener(this)
+        imv_menu.setOnClickListener(this)
+        imv_search.setOnClickListener(this)
         nav_view.setNavigationItemSelectedListener(this)
         bottom_navigation.setOnNavigationItemSelectedListener(this)
     }
@@ -68,13 +59,12 @@ class MainActivity : BaseActivity(),
 
     override fun onClick(v: View?) {
         when (v!!.id) {
-            R.id.imv_back -> {
-                finish()
+            R.id.imv_menu -> {
+                drawer_layout.openDrawer(GravityCompat.START)
             }
-            R.id.tv_login -> {
-                val intent: Intent = Intent(this@MainActivity, LoginActivity::class.java)
+            R.id.imv_search -> {
+                val intent: Intent = Intent(this@MainActivity, SearchActivity::class.java)
                 startActivityWithTransition(intent)
-                finish()
             }
         }
     }
@@ -113,7 +103,7 @@ class MainActivity : BaseActivity(),
             R.id.bottom_home -> {
                 view_page_main.currentItem = 0
             }
-            R.id.bottom_search -> {
+            R.id.bottom_notification -> {
                 view_page_main.currentItem = 1
             }
             R.id.bottom_my_course -> {

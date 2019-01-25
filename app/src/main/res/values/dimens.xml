@@ -23,4 +23,6 @@
     <dimen name="dimen_8">8dp</dimen>
     <dimen name="height_item_categories_detail">100dp</dimen>
     <dimen name="dimen_14">14dp</dimen>
+    <dimen name="dimen_18">18dp</dimen>
+    <dimen name="diment_15">15dp</dimen>
 </resources>
